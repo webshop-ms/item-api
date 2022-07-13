@@ -10,21 +10,22 @@
                     type="bigint"
                     autoIncrement="true">
                 <constraints primaryKey="true"
-                             nullable="false" />
+                             nullable="false"/>
             </column>
             <column name="uuid"
                     type="uuid"
                     autoIncrement="false">
+                <!-- TODO set nullable true -->
                 <constraints unique="true"
-                             nullable="false" />
+                             nullable="true"/>
             </column>
             <column name="name"
                     type="varchar(20)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="unit_price"
                     type="decimal">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import java.util.UUID;
 
+// TODO put it to common somehow
 @MappedSuperclass
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -16,7 +17,9 @@ public class Identity {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    // TODO it does not generate uuid
+    // TODO set nullable false
+    @Column(nullable = true, unique = true)
     @GeneratedValue(generator = "UUID")
     private UUID uuid;
 
