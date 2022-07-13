@@ -2,6 +2,9 @@ package com.webshop.item.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GeneratorType;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -10,17 +13,16 @@ import java.util.UUID;
 @MappedSuperclass
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Identity {
+public abstract class Identity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    // TODO it does not generate uuid
-    // TODO set nullable false
-    @Column(nullable = true, unique = true)
-    @GeneratedValue(generator = "UUID")
+    @Column(name = "uuid", unique = true, updatable = false)
+    @GeneratorType(type = UuidGenerator.class, when = GenerationTime.INSERT)
+    @Type(type = "uuid-char")
     private UUID uuid;
 
 }

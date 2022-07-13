@@ -26,7 +26,6 @@ public class ItemTransformer extends EntityTransformer<ItemDto, Item> {
             return null;
         }
         Item item = new Item();
-        item.setUuid(itemDto.getId());
         item.setName(itemDto.getName());
         item.setUnitPrice(itemDto.getUnitPrice());
         return item;
