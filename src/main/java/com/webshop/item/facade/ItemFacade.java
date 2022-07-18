@@ -34,4 +34,9 @@ public class ItemFacade {
         Item item = itemService.getItemByUuid(uuid);
         return itemTransformer.entityToDto(item);
     }
+
+    @Transactional
+    public void deleteItemByUuid(String uuid) {
+        itemService.deleteByUuid(uuid);
+    }
 }

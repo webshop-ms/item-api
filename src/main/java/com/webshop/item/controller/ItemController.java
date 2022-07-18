@@ -33,4 +33,11 @@ public class ItemController {
         ItemDto itemDto = itemFacade.getItem(uuid);
         return new ResponseEntity<>(itemDto, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable(name = "id") String uuid) {
+        itemFacade.deleteItemByUuid(uuid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
