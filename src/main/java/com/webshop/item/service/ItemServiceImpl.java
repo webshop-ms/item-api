@@ -12,8 +12,4 @@ public class ItemServiceImpl extends EntityServiceImpl<Item, ItemDao> implements
         super(dao);
     }
 
-    @Override
-    public Item getItemByUuid(String uuid) {
-        return dao.getItemByUuid(uuid);
-    }
 }

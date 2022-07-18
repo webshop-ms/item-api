@@ -5,6 +5,4 @@ import com.webshop.item.model.entity.Item;
 
 public interface ItemService extends EntityService<Item> {
 
-    Item getItemByUuid(String uuid);
-
 }
