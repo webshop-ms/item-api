@@ -27,4 +27,10 @@ public class ItemController {
         itemFacade.createItem(itemDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ItemDto> getItem(@PathVariable(name = "id") String uuid) {
+        ItemDto itemDto = itemFacade.getItem(uuid);
+        return new ResponseEntity<>(itemDto, HttpStatus.OK);
+    }
 }

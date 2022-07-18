@@ -28,4 +28,10 @@ public class ItemFacade {
         List<Item> items = itemService.getAll();
         return itemTransformer.entityListToDtoList(items);
     }
+
+    @Transactional(readOnly = true)
+    public ItemDto getItem(String uuid) {
+        Item item = itemService.getItemByUuid(uuid);
+        return itemTransformer.entityToDto(item);
+    }
 }
