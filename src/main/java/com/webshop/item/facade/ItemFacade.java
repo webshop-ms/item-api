@@ -31,7 +31,7 @@ public class ItemFacade {
 
     @Transactional(readOnly = true)
     public ItemDto getItem(String uuid) {
-        Item item = itemService.getItemByUuid(uuid);
+        Item item = itemService.getByUuid(uuid);
         return itemTransformer.entityToDto(item);
     }
 
