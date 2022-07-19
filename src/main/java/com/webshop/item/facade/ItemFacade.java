@@ -1,6 +1,6 @@
 package com.webshop.item.facade;
 
-import com.webshop.item.model.dto.ItemDto;
+import com.webshop.common.model.dto.ItemDto;
 import com.webshop.item.model.entity.Item;
 import com.webshop.item.service.ItemService;
 import com.webshop.item.transformer.ItemTransformer;

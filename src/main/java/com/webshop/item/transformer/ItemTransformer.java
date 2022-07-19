@@ -1,7 +1,7 @@
 package com.webshop.item.transformer;
 
 import com.webshop.common.transformer.EntityTransformer;
-import com.webshop.item.model.dto.ItemDto;
+import com.webshop.common.model.dto.ItemDto;
 import com.webshop.item.model.entity.Item;
 import org.springframework.stereotype.Component;
 

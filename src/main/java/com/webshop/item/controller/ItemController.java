@@ -1,7 +1,8 @@
 package com.webshop.item.controller;
 
+import com.webshop.common.model.dto.ItemDto;
 import com.webshop.item.facade.ItemFacade;
-import com.webshop.item.model.dto.ItemDto;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
