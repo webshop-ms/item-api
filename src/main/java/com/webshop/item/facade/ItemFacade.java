@@ -39,4 +39,11 @@ public class ItemFacade {
     public void deleteItemByUuid(String uuid) {
         itemService.deleteByUuid(uuid);
     }
+
+    @Transactional(readOnly = true)
+    public List<ItemDto> getItemsByUuids(List<String> uuids) {
+        List<Item> items = itemService.getAllByUuids(uuids);
+        return itemTransformer.entityListToDtoList(items);
+    }
+
 }

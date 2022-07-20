@@ -2,18 +2,23 @@ package com.webshop.item.controller;
 
 import com.webshop.common.model.dto.ItemDto;
 import com.webshop.item.facade.ItemFacade;
-
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/items")
 @AllArgsConstructor
+@Validated
 public class ItemController {
+
+    private static final String UUID_REGEX = "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$";
 
     private ItemFacade itemFacade;
 
@@ -39,6 +44,13 @@ public class ItemController {
     public ResponseEntity<Void> deleteItem(@PathVariable(name = "id") String uuid) {
         itemFacade.deleteItemByUuid(uuid);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // TODO exception handler into common for constraintviolationexception.class
+    @GetMapping("/find-all-by")
+    public ResponseEntity<List<ItemDto>> getAllItemsByUuid(@RequestParam List<@Valid @Pattern(regexp = UUID_REGEX, message = "nem jo") String> uuids) {
+        List<ItemDto> itemDtos = itemFacade.getItemsByUuids(uuids);
+        return new ResponseEntity<>(itemDtos, HttpStatus.OK);
     }
 
 }
