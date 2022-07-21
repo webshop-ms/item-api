@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
@@ -35,20 +34,19 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ItemDto> getItem(@PathVariable(name = "id") String uuid) {
+    public ResponseEntity<ItemDto> getItem(@PathVariable(name = "id") @Pattern(regexp = UUID_REGEX) String uuid) {
         ItemDto itemDto = itemFacade.getItem(uuid);
         return new ResponseEntity<>(itemDto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable(name = "id") String uuid) {
+    public ResponseEntity<Void> deleteItem(@PathVariable(name = "id") @Pattern(regexp = UUID_REGEX) String uuid) {
         itemFacade.deleteItemByUuid(uuid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    // TODO exception handler into common for constraintviolationexception.class
     @GetMapping("/find-all-by")
-    public ResponseEntity<List<ItemDto>> getAllItemsByUuid(@RequestParam List<@Valid @Pattern(regexp = UUID_REGEX, message = "nem jo") String> uuids) {
+    public ResponseEntity<List<ItemDto>> getAllItemsByUuid(@RequestParam List<@Pattern(regexp = UUID_REGEX) String> uuids) {
         List<ItemDto> itemDtos = itemFacade.getItemsByUuids(uuids);
         return new ResponseEntity<>(itemDtos, HttpStatus.OK);
     }
