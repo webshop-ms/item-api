@@ -1,6 +1,7 @@
 package com.webshop.item.controller;
 
 import com.webshop.common.model.dto.ItemDto;
+import com.webshop.common.model.entity.Identity;
 import com.webshop.item.facade.ItemFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,6 @@ import java.util.List;
 @Validated
 public class ItemController {
 
-    private static final String UUID_REGEX = "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$";
-
     private ItemFacade itemFacade;
 
     @GetMapping()
@@ -34,19 +33,19 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ItemDto> getItem(@PathVariable(name = "id") @Pattern(regexp = UUID_REGEX) String uuid) {
+    public ResponseEntity<ItemDto> getItem(@PathVariable(name = "id") @Pattern(regexp = Identity.UUID_REGEX) String uuid) {
         ItemDto itemDto = itemFacade.getItem(uuid);
         return new ResponseEntity<>(itemDto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable(name = "id") @Pattern(regexp = UUID_REGEX) String uuid) {
+    public ResponseEntity<Void> deleteItem(@PathVariable(name = "id") @Pattern(regexp = Identity.UUID_REGEX) String uuid) {
         itemFacade.deleteItemByUuid(uuid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/find-all-by")
-    public ResponseEntity<List<ItemDto>> getAllItemsByUuid(@RequestParam List<@Pattern(regexp = UUID_REGEX) String> uuids) {
+    public ResponseEntity<List<ItemDto>> getAllItemsByUuid(@RequestParam List<@Pattern(regexp = Identity.UUID_REGEX) String> uuids) {
         List<ItemDto> itemDtos = itemFacade.getItemsByUuids(uuids);
         return new ResponseEntity<>(itemDtos, HttpStatus.OK);
     }
