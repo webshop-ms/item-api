@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="insert-test-items" author="sztorma" context="test">
+        <insert tableName="items">
+            <column name="id" value="1"/>
+            <column name="uuid" value="bf67c7f4-01a1-4295-9c72-9c2d0a2c66c0"/>
+            <column name="name" value="dvd player"/>
+            <column name="unit_price" value="30"/>
+        </insert>
+        <insert tableName="items">
+            <column name="id" value="2"/>
+            <column name="uuid" value="201c4f2b-ab0b-4d9b-9687-0b42cad22458"/>
+            <column name="name" value="iphone"/>
+            <column name="unit_price" value="250"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

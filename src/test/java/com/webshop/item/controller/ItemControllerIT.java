@@ -1,5 +1,6 @@
 package com.webshop.item.controller;
 
+import com.webshop.item.BaseIT;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,10 +11,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-// TODO test container
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ItemControllerIT {
+public class ItemControllerIT extends BaseIT {
 
     @Autowired
     private MockMvc mockMvc;
